@@ -1,0 +1,142 @@
+/* ── Base ─────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  background-image: radial-gradient(
+    ellipse at top right,
+    rgba(255, 160, 40, 0.15) 0%,
+    transparent 60%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: #e0e0e0;
+}
+
+/* ── Title ────────────────────────────────────── */
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #e0e0e0;
+  margin-bottom: 32px;
+  text-shadow: 0 0 20px rgba(255, 160, 40, 0.3);
+}
+
+/* ── Main layout ──────────────────────────────── */
+#main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* ── Grid ─────────────────────────────────────── */
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 52px);
+  grid-template-rows: repeat(9, 52px);
+  border: 3px solid #888;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 160, 40, 0.08);
+}
+
+/* ── Individual cells ─────────────────────────── */
+#grid-container input {
+  width: 52px;
+  height: 52px;
+  background: #0f0f0f;
+  color: #ffffff;
+  border: 1px solid #333;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: inherit;
+  font-weight: 600;
+  outline: none;
+  caret-color: transparent;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+/* Thick borders for 3x3 blocks */
+#grid-container input:nth-child(3n+1):not(:nth-child(9n+1)) {
+  border-left: 2px solid #888;
+}
+#grid-container input:nth-child(n+19):nth-child(-n+27),
+#grid-container input:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 2px solid #888;
+}
+
+/* Focus glow */
+#grid-container input:focus {
+  background: #1f1a0f;
+  box-shadow: inset 0 0 8px rgba(255, 160, 40, 0.25);
+}
+
+/* Given numbers (white, set by JS) */
+#grid-container input.given {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Solved numbers (blue, set by JS) */
+#grid-container input.solved {
+  color: #4a9eff;
+  font-weight: 500;
+}
+
+/* Conflict highlight */
+#grid-container input.conflict {
+  border-color: #ff4444 !important;
+  background: #1f0a0a;
+}
+
+/* ── Controls (right side) ────────────────────── */
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+/* ── Buttons ──────────────────────────────────── */
+button {
+  width: 120px;
+  padding: 12px 0;
+  background: #8B4513;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  background: #A0522D;
+  box-shadow: 0 0 16px rgba(255, 160, 40, 0.3);
+}
+
+button:active {
+  background: #6B3410;
+}
+
+/* ── Error message ────────────────────────────── */
+#error-msg {
+  color: #ff4444;
+  font-size: 0.85rem;
+  max-width: 120px;
+  line-height: 1.5;
+  min-height: 40px;
+}
